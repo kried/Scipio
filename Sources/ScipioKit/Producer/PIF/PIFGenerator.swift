@@ -105,7 +105,7 @@ struct PIFGenerator {
     private func generateInfoPlistForResource(for pifTarget: PIF.Target) {
         assert(pifTarget.supportedType == .resourceBundle, "This method must be called for Resource bundles")
 
-        let infoPlistGenerator = InfoPlistGenerator(fileSystem: fileSystem)
+        let infoPlistGenerator = InfoPlistGenerator(fileSystem: fileSystem, buildOptions: buildOptions)
         let infoPlistPath = descriptionPackage.workspaceDirectory.appending(component: "Info-\(pifTarget.productName).plist")
         do {
             try infoPlistGenerator.generateForResourceBundle(at: infoPlistPath)
@@ -226,7 +226,7 @@ private struct PIFLibraryTargetModifier {
 
         settings[.GENERATE_INFOPLIST_FILE] = "YES"
         // These values are required to ship built frameworks to AppStore as embedded frameworks
-        settings[.MARKETING_VERSION] = "1.0"
+        settings[.MARKETING_VERSION] = buildOptions.libraryVersion
         settings[.CURRENT_PROJECT_VERSION] = "1"
 
         let frameworkType = buildOptionsMatrix[pifTarget.name]?.frameworkType ?? buildOptions.frameworkType

@@ -5,7 +5,18 @@ import TSCBasic
 
 final class InfoPlistGeneratorTests: XCTestCase {
     let fileSystem = localFileSystem
-    lazy var generator = InfoPlistGenerator(fileSystem: fileSystem)
+    let buildOptions = BuildOptions(
+        buildConfiguration: .release,
+        isDebugSymbolsEmbedded: true,
+        frameworkType: .dynamic,
+        sdks: Set(),
+        extraFlags: nil,
+        extraBuildParameters: nil,
+        enableLibraryEvolution: true,
+        customFrameworkModuleMapContents: nil,
+        libraryVersion: "11.2.3"
+        )
+    lazy var generator = InfoPlistGenerator(fileSystem: fileSystem, buildOptions: buildOptions)
     var temporaryPath: AbsolutePath!
 
     override func setUp() async throws {
@@ -37,7 +48,7 @@ final class InfoPlistGeneratorTests: XCTestCase {
             <key>CFBundlePackageType</key>
             <string>BNDL</string>
             <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
+            <string>11.2.3</string>
             <key>CFBundleVersion</key>
             <string>1</string>
         </dict>
