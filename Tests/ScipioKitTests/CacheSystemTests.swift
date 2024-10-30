@@ -30,7 +30,8 @@ final class CacheSystemTests: XCTestCase {
                 extraBuildParameters: ["SWIFT_OPTIMIZATION_LEVEL": "-Osize"],
                 enableLibraryEvolution: true,
                 keepPublicHeadersStructure: false,
-                customFrameworkModuleMapContents: Data(customModuleMap.utf8)
+                customFrameworkModuleMapContents: Data(customModuleMap.utf8),
+                libraryVersion: "2.0.0"
             ),
             clangVersion: "clang-1400.0.29.102",
             xcodeVersion: .init(xcodeVersion: "15.4", xcodeBuildVersion: "15F31d")
@@ -59,6 +60,7 @@ final class CacheSystemTests: XCTestCase {
             "frameworkType" : "dynamic",
             "isDebugSymbolsEmbedded" : false,
             "keepPublicHeadersStructure" : false,
+            "libraryVersion" : "2.0.0",
             "sdks" : [
               "iOS"
             ]
@@ -118,7 +120,8 @@ final class CacheSystemTests: XCTestCase {
                 extraBuildParameters: nil,
                 enableLibraryEvolution: false,
                 keepPublicHeadersStructure: false,
-                customFrameworkModuleMapContents: nil
+                customFrameworkModuleMapContents: nil,
+                libraryVersion: "1.0.0"
             )
         )
 

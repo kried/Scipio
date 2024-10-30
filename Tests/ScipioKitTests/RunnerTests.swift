@@ -51,7 +51,11 @@ final class RunnerTests: XCTestCase {
         let runner = Runner(
             mode: .prepareDependencies,
             options: .init(
-                baseBuildOptions: .init(isSimulatorSupported: false, enableLibraryEvolution: true),
+                baseBuildOptions: .init(
+                    isSimulatorSupported: false,
+                    enableLibraryEvolution: true,
+                    libraryVersion: "3.5.0"
+                ),
                 shouldOnlyUseVersionsFromResolvedFile: true
             )
         )
@@ -99,7 +103,7 @@ final class RunnerTests: XCTestCase {
             let infoPlist = try plistDecoder.decode(InfoPlist.self, from: infoPlistData)
             XCTAssertEqual(infoPlist.bundleExecutable, library)
             XCTAssertEqual(infoPlist.bundleVersion, "1")
-            XCTAssertEqual(infoPlist.bundleShortVersionString, "1.0")
+            XCTAssertEqual(infoPlist.bundleShortVersionString, "3.5.0")
 
             XCTAssertFalse(fileManager.fileExists(atPath: simulatorFramework.path),
                            "Should not create Simulator framework")
@@ -781,6 +785,7 @@ extension BuildOptions {
         extraBuildParameters: nil,
         enableLibraryEvolution: true,
         keepPublicHeadersStructure: false,
-        customFrameworkModuleMapContents: nil
+        customFrameworkModuleMapContents: nil,
+        libraryVersion: "1.0.0"
     )
 }

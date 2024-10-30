@@ -3,9 +3,14 @@ import TSCBasic
 
 struct InfoPlistGenerator {
     private let fileSystem: any FileSystem
+    private let buildOptions: BuildOptions
 
-    init(fileSystem: any FileSystem) {
+    init(
+        fileSystem: any FileSystem,
+        buildOptions: BuildOptions
+    ) {
         self.fileSystem = fileSystem
+        self.buildOptions = buildOptions
     }
 
     func generateForResourceBundle(at path: AbsolutePath) throws {
@@ -30,7 +35,7 @@ struct InfoPlistGenerator {
             <key>CFBundlePackageType</key>
             <string>BNDL</string>
             <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
+            <string>\(buildOptions.libraryVersion)</string>
             <key>CFBundleVersion</key>
             <string>1</string>
         </dict>

@@ -45,6 +45,10 @@ struct BuildOptionGroup: ParsableArguments {
     @Flag(name: [.customShort("f", allowingJoined: false), .long],
           help: "Whether overwrite generated frameworks or not")
     var overwrite: Bool = false
+
+    @Option(name: [.customLong("library-version")],
+          help: "The version that will be set as CFBundleShortVersionString in Info.plist")
+    var libraryVersion: String = "1.0.0"
 }
 
 extension FrameworkType: ExpressibleByArgument { }

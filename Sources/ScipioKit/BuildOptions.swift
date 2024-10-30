@@ -13,7 +13,8 @@ struct BuildOptions: Hashable, Codable, Sendable {
         extraBuildParameters: ExtraBuildParameters?,
         enableLibraryEvolution: Bool,
         keepPublicHeadersStructure: Bool,
-        customFrameworkModuleMapContents: Data?
+        customFrameworkModuleMapContents: Data?,
+        libraryVersion: String
     ) {
         self.buildConfiguration = buildConfiguration
         self.isDebugSymbolsEmbedded = isDebugSymbolsEmbedded
@@ -24,6 +25,7 @@ struct BuildOptions: Hashable, Codable, Sendable {
         self.enableLibraryEvolution = enableLibraryEvolution
         self.keepPublicHeadersStructure = keepPublicHeadersStructure
         self.customFrameworkModuleMapContents = customFrameworkModuleMapContents
+        self.libraryVersion = libraryVersion
     }
 
     let buildConfiguration: BuildConfiguration
@@ -34,6 +36,7 @@ struct BuildOptions: Hashable, Codable, Sendable {
     let extraBuildParameters: ExtraBuildParameters?
     let enableLibraryEvolution: Bool
     let keepPublicHeadersStructure: Bool
+    let libraryVersion: String
     /// A custom framework modulemap contents
     /// - Note: It have to store the actual file contents rather than its path,
     /// because the cache key should change when the file contents change.
